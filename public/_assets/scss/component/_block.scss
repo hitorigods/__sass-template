@@ -1,0 +1,82 @@
+@charset "utf-8";
+
+@use '../function'as *;
+@use '../utility'as *;
+
+//* block
+//* -------------------------------------------------- */
+.c-block {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	@include breakMin($breakTablet) {}
+
+	>* {
+		margin-top: 40px;
+
+		@include breakMin($breakTablet) {
+			margin-top: 60px;
+		}
+
+		&:first-child {
+			margin-top: 0;
+		}
+	}
+
+	&_title {
+		text-align: center;
+	}
+
+	&_lead {
+		text-align: justify;
+	}
+
+	&_button {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin-top: 30px;
+
+		@include breakMin($breakTablet) {
+			align-items: flex-start;
+		}
+	}
+}
+
+//* block2
+//* -------------------------------------------------- */
+.c-block2 {
+	@extend .c-block;
+	display: block;
+
+	@include breakMin($breakTablet) {}
+
+	&_button {
+		@extend .c-block_button;
+	}
+}
+
+//* blocks
+//* -------------------------------------------------- */
+.c-blocks {
+	@include breakMin($breakTablet) {}
+
+	&_items {
+		display: block;
+		margin: -35px 0;
+
+		@include breakMin($breakTablet) {
+			margin: -80px 0;
+		}
+	}
+
+	&_item {
+		display: block;
+		padding: 35px 0;
+
+		@include breakMin($breakTablet) {
+			padding: 80px 0;
+		}
+	}
+}

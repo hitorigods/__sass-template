@@ -1,0 +1,338 @@
+@charset "utf-8";
+
+@use '../function'as *;
+@use '../utility'as *;
+
+//* form
+//* -------------------------------------------------- */
+.c-form {
+	@include breakMin($breakTablet) {}
+
+	&_inner {}
+
+	&_content {
+		display: block;
+		position: relative;
+
+		&:before,
+		&:after {
+			pointer-events: none;
+			content: '';
+			display: block;
+			position: absolute;
+			top: 0;
+			width: 40px;
+			height: 40px;
+			border: solid 1px transparent;
+			border-top-color: $colorFont;
+
+			@include breakMin($breakTablet) {
+				width: 65px;
+				height: 65px;
+			}
+		}
+
+		&:before {
+			left: 0;
+			border-left-color: $colorFont;
+		}
+
+		&:after {
+			right: 0;
+			border-right-color: $colorFont;
+		}
+	}
+
+	&_frame {
+		@extend .c-form_content;
+		padding: $padding;
+
+		@include breakMin($breakTablet) {
+			padding-top: 80px;
+			padding-bottom: 80px;
+		}
+
+		&:before,
+		&:after {
+			top: auto;
+			bottom: 0;
+			border-top-color: transparent;
+			border-bottom-color: $colorFont;
+		}
+	}
+
+	&_form {}
+
+	&_table {
+		margin: auto;
+
+		@include breakMin($breakTablet) {
+			width: $widthDesktopNarrow;
+			max-width: 100%;
+		}
+	}
+
+	&_block {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 100%;
+
+		>* {
+			margin-top: 20px;
+
+			@include breakMin($breakTablet) {
+				margin-top: 30px;
+			}
+
+			&:first-child {
+				margin-top: 0;
+			}
+		}
+	}
+
+	&_bottom {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin-top: 30px;
+
+		@include breakMin($breakTablet) {
+			margin-top: 60px;
+		}
+
+		>* {
+			margin-top: 20px;
+
+			@include breakMin($breakTablet) {
+				margin-top: 40px;
+			}
+
+			&:first-child {
+				margin-top: 0;
+			}
+		}
+	}
+
+	&_label {
+		display: block;
+		width: 100%;
+		text-align: right;
+	}
+
+	&_input {
+		>* {
+			margin-top: 5px;
+
+			&:first-child {
+				margin-top: 0;
+			}
+		}
+	}
+
+	&_textarea {
+		width: 100%;
+	}
+
+	&_note {
+		display: block;
+		@include fontsize(14);
+		font-weight: 500;
+		line-height: 1.5;
+
+		@include breakMin($breakTablet) {
+			@include fontsize(16);
+		}
+	}
+
+	&_error {
+		display: none;
+		@include fontsize(14);
+		font-weight: 500;
+		line-height: 1.5;
+
+		@include breakMin($breakTablet) {
+			@include fontsize(16);
+		}
+
+		.c-input_input.is-validate_valid+& {}
+
+		.c-input_input.is-validate_invalid+& {
+			display: block;
+		}
+	}
+
+	&_submit {
+		width: 300px;
+		margin: auto;
+
+		@include breakMin($breakTablet) {
+			width: 500px;
+
+		}
+	}
+
+	&_link {}
+}
+
+//* input
+//* -------------------------------------------------- */
+.c-input {
+	@include breakMin($breakTablet) {}
+
+	&_input {
+		display: block;
+		width: 100%;
+		height: 50px;
+		padding: 0 15px;
+		@include fontsize(16);
+		border: solid 2px $colorFont;
+
+		@include breakMin($breakTablet) {}
+	}
+}
+
+//* textarea
+//* -------------------------------------------------- */
+.c-textarea {
+	@include breakMin($breakTablet) {}
+
+	&_textarea {
+		resize: vertical;
+		display: block;
+		width: 100%;
+		padding: 15px;
+		@include fontsize(16);
+		border: solid 2px $colorFont;
+
+		@include breakMin($breakTablet) {}
+	}
+}
+
+//* radio
+//* -------------------------------------------------- */
+.c-radio {
+	@include breakMin($breakTablet) {}
+
+	&_items {
+		display: flex;
+		align-items: center;
+		margin: -10px;
+
+		@include breakMin($breakTablet) {}
+	}
+
+	&_item {
+		display: block;
+		padding: 10px;
+
+		@include breakMin($breakTablet) {}
+	}
+
+	&_label {
+		display: flex;
+		align-items: center;
+		position: relative;
+		cursor: pointer;
+		@include transition;
+
+		&:hover {
+			color: $colorMain;
+		}
+	}
+
+	&_input {
+		position: absolute;
+		visibility: hidden;
+		z-index: -1;
+	}
+
+	&_icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 25px;
+		height: 25px;
+		border: solid 1px $colorFont;
+		border-radius: 50%;
+		@include transition;
+
+		@include breakMin($breakTablet) {}
+
+		&::before {
+			content: '';
+			display: block;
+			width: 15px;
+			height: 15px;
+			background-color: $colorMain;
+			border-radius: 50%;
+			opacity: 0;
+			@include transition;
+
+			@include breakMin($breakTablet) {}
+		}
+
+		input:checked+& {
+			&::before {
+				opacity: 1;
+			}
+		}
+
+		.c-radio_label:hover & {
+			border-color: $colorMain;
+		}
+	}
+
+	&_name {
+		display: block;
+		margin-left: 10px;
+		@include fontsize(18);
+		font-weight: 700;
+
+		@include breakMin($breakTablet) {
+			@include fontsize(24);
+		}
+	}
+}
+
+//* select
+//* -------------------------------------------------- */
+.c-select {
+	position: relative;
+
+	@include breakMin($breakTablet) {}
+
+	&:after {
+		content: '';
+		pointer-events: none;
+		display: block;
+		position: absolute;
+		top: 50%;
+		right: 10px;
+		width: 12px;
+		height: 12px;
+		border: solid 2px transparent;
+		border-top-color: $colorFont;
+		border-right-color: $colorFont;
+		transform: rotate(135deg) translate(-75%, 50%);
+		transform-origin: 25% 50%;
+	}
+
+	&_select {
+		appearance: none;
+		cursor: pointer;
+		display: block;
+		width: 100%;
+		height: 50px;
+		padding: 0 15px;
+		@include fontsize(16);
+		border: solid 2px $colorFont;
+		@include transition;
+
+		@include breakMin($breakTablet) {}
+
+		&:hover {
+			background-color: rgba($colorMain, 1);
+		}
+	}
+}

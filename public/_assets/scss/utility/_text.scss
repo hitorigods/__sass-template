@@ -1,0 +1,272 @@
+@charset "utf-8";
+
+@use '../function'as *;
+
+//* text */
+.u-text_normal {
+	font-weight: 300;
+}
+
+.u-text_bold {
+	font-weight: 700;
+}
+
+.u-text_italic {
+	font-style: italic;
+}
+
+.u-text_center {
+	text-align: center;
+}
+
+.u-text_left {
+	text-align: left;
+}
+
+.u-text_right {
+	text-align: right;
+}
+
+.u-text_sup {
+	font-size: 70%;
+	vertical-align: top;
+	position: relative;
+	top: -0.1em;
+}
+
+.u-text_sub {
+	font-size: 70%;
+	vertical-align: bottom;
+	position: relative;
+	top: 0.1em;
+}
+
+.u-text_indent {
+	text-indent: 1em;
+}
+
+.u-text_large {
+	font-size: 110%;
+}
+
+.u-text_small {
+	font-size: 80%;
+}
+
+@include breakMax($breakTablet) {
+	.u_m-text_center {
+		text-align: center;
+	}
+
+	.u_m-text_left {
+		text-align: left;
+	}
+
+	.u_m-text_right {
+		text-align: right;
+	}
+
+	.u_m-text_large {
+		font-size: 110%;
+	}
+
+	.u_m-text_small {
+		font-size: 80%;
+	}
+}
+
+.u-text_marker {
+	background: linear-gradient(transparent 60%, $colorMain 60%);
+}
+
+//* color */
+.u-color_default {
+	color: $colorFont;
+}
+
+.u-color_main {
+	color: $colorMain;
+}
+
+.u-color_red {
+	color: #f00;
+}
+
+//* lead */
+.u-lead {
+	@include fontsize(13);
+	line-height: 1.8;
+
+	@include breakMin($breakTablet) {
+		@include fontsize(18);
+	}
+
+	a {
+		color: $colorMain;
+
+		&:hover {}
+
+		&[target='_blank'] {
+			&:after {}
+		}
+	}
+}
+
+.u-text {
+	@extend .u-lead;
+	@include fontsize(12);
+
+	@include breakMin($breakTablet) {
+		@include fontsize(16);
+	}
+}
+
+.u-copy {
+	@include fontsize(15);
+	line-height: 1.8;
+
+	@include breakMin($breakTablet) {
+		@include fontsize(24);
+	}
+}
+
+
+//* title */
+.u-title {
+	display: block;
+	position: relative;
+	padding-bottom: 20px;
+
+	@include breakMin($breakTablet) {
+		padding-bottom: 30px;
+	}
+
+	&:before,
+	&:after {
+		content: '';
+		display: block;
+		position: absolute;
+		bottom: 0;
+		height: 1px;
+	}
+
+	&:before {
+		right: 0;
+		width: 30px;
+		background-color: $colorMain;
+		z-index: 2;
+
+		@include breakMin($breakTablet) {
+			width: 60px;
+		}
+	}
+
+	&:after {
+		left: 0;
+		width: 100%;
+		background-color: $colorSub;
+		z-index: 1;
+
+		@include breakMin($breakTablet) {}
+	}
+
+	&_label {
+		display: flex;
+		@include fontsize(16);
+		letter-spacing: .05em;
+		line-height: 1.5;
+
+		@include breakMin($breakTablet) {
+			@include fontsize(20);
+		}
+
+		.u-title--size_large & {
+			@include fontsize(18);
+
+			@include breakMin($breakTablet) {
+				@include fontsize(30);
+			}
+		}
+
+		.u-title--font_mincho & {
+			font-family: $fontMincho;
+			font-weight: 400;
+		}
+	}
+
+	&_order {
+		display: block;
+		flex-basis: 1em;
+	}
+}
+
+//* list */
+.u-list {
+	&_items {
+		display: block;
+
+		.u-list--type_order & {
+			counter-reset: list-order;
+		}
+	}
+
+	&_item {
+		display: flex;
+		position: relative;
+
+		&:before {
+			content: '';
+			display: block;
+		}
+
+		.u-list--type_order &,
+		.u-list--type_disc &,
+		.u-list--type_circle &,
+		.u-list--type_annot & {}
+
+		.u-list--type_disc &,
+		.u-list--type_circle & {
+			padding-left: 1em;
+
+			&:before {
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+		}
+
+		.u-list--type_order & {
+			counter-increment: list-order;
+
+			&:before {
+				content: counter(list-order) '.\00A0';
+			}
+		}
+
+		.u-list--type_disc & {
+			&:before {
+				top: .7em;
+				width: 8px;
+				height: 8px;
+				background-color: #fff;
+				border-radius: 50%;
+			}
+		}
+
+		.u-list--type_circle & {
+			&:before {
+				top: .7em;
+				width: 8px;
+				height: 8px;
+				border: 1px solid #fff;
+				border-radius: 50%;
+			}
+		}
+
+		.u-list--type_annot & {
+			&:before {
+				content: '※\00A0';
+			}
+		}
+	}
+}

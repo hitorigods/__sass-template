@@ -1,0 +1,143 @@
+@charset "utf-8";
+
+@use '../function'as *;
+
+//* YU GOTHIC
+//* -------------------------------------------------- */
+@font-face {
+	font-family: 'Yu Gothic';
+	src: local('Yu Gothic Medium');
+	font-weight: 100;
+}
+
+@font-face {
+	font-family: 'Yu Gothic';
+	src: local('Yu Gothic Medium');
+	font-weight: 200;
+}
+
+@font-face {
+	font-family: 'Yu Gothic';
+	src: local('Yu Gothic Medium');
+	font-weight: 300;
+}
+
+@font-face {
+	font-family: 'Yu Gothic';
+	src: local('Yu Gothic Medium');
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: 'Yu Gothic';
+	src: local('Yu Gothic Bold');
+	font-weight: bold;
+}
+
+//* ヒラギノ角ゴシック
+//* -------------------------------------------------- */
+@font-face {
+	font-family: 'Hiragino Sans';
+	src: local(HiraginoSans-W0);
+	font-weight: 100;
+}
+
+@font-face {
+	font-family: 'Hiragino Sans';
+	src: local(HiraginoSans-W1);
+	font-weight: 200;
+}
+
+@font-face {
+	font-family: 'Hiragino Sans';
+	src: local(HiraginoSans-W2);
+	font-weight: 300;
+}
+
+@font-face {
+	font-family: 'Hiragino Sans';
+	src: local(HiraginoSans-W3);
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: 'Hiragino Sans';
+	src: local(HiraginoSans-W4);
+	font-weight: 500;
+}
+
+@font-face {
+	font-family: 'Hiragino Sans';
+	src: local(HiraginoSans-W5);
+	font-weight: 500;
+}
+
+@font-face {
+	font-family: 'Hiragino Sans';
+	src: local(HiraginoSans-W6);
+	font-weight: 700;
+}
+
+@font-face {
+	font-family: 'Hiragino Sans';
+	src: local(HiraginoSans-W7);
+	font-weight: 800;
+}
+
+@font-face {
+	font-family: 'Hiragino Sans';
+	src: local(HiraginoSans-W8);
+	font-weight: 900;
+}
+
+@font-face {
+	font-family: 'Hiragino Sans W9';
+	src: local(HiraginoSans-W9);
+	font-weight: 900;
+}
+
+body,
+select,
+input,
+button,
+textarea,
+:before,
+:after,
+.u-font_gothic,
+.u-font_gothicBefore:before,
+.u-font_gothicAfter:after,
+.u-font_gothic select,
+.u-font_gothic input,
+.u-font_gothic button,
+.u-font_gothic textarea,
+.ui-widget {
+	font-family: $fontGothic;
+	font-weight: 400;
+	font-feature-settings: 'palt';
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-rendering: optimizelegibility;
+
+	.wf-active & {
+		font-family: $fontBasic;
+	}
+}
+
+.u-font_mincho,
+.u-font_minchoBefore:before,
+.u-font_minchoAfter:after {
+	font-family: $fontMincho;
+
+	.wf-active & {
+		font-family: $fontHannari, $fontMincho;
+	}
+}
+
+.u-font_Roboto {
+
+	&,
+	&--content_before:before,
+	&--content_after:after {
+		font-family: $fontRoboto;
+	}
+}

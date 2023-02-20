@@ -1,0 +1,93 @@
+@charset "utf-8";
+
+@use '../function'as *;
+@use '../utility'as *;
+
+//* table
+//* -------------------------------------------------- */
+.c-table {
+	@include breakMin($breakTablet) {}
+
+	&_table {
+		width: 100%;
+		border-top: solid 1px rgba($colorFont, .3);
+
+		@include breakMin($breakTablet) {}
+	}
+
+	&_tbody {}
+
+	&_row {
+		border-bottom: solid 1px rgba($colorFont, .3);
+
+		.c-table--layout_column-media & {
+			@include breakMax($breakTablet) {
+				display: block;
+				padding: 20px 0;
+			}
+		}
+	}
+
+	&_head,
+	&_data {
+		padding: 40px 10px;
+		text-align: justify;
+
+		.c-table--layout_column-media & {
+			@include breakMax($breakTablet) {
+				display: block;
+				padding: 0;
+			}
+		}
+
+		.c-table--layout_little & {
+			padding: 15px 10px;
+		}
+	}
+
+	&_head {
+		@include fontsize(13);
+		font-weight: 700;
+		letter-spacing: .1em;
+		line-height: 1.5;
+		text-align: left;
+
+		@include breakMin($breakTablet) {
+			width: 230px;
+			@include fontsize(18);
+		}
+
+		.c-table--layout_column-media & {
+			@include breakMax($breakTablet) {}
+		}
+
+		.c-table--layout_little & {
+			width: (100% / 3);
+			@include fontsize(12);
+
+			@include breakMin($breakTablet) {
+				@include fontsize(16);
+			}
+		}
+	}
+
+	&_data {
+		padding-left: 0;
+
+		@include breakMin($breakTablet) {}
+
+		>* {
+			margin-top: 15px;
+
+			&:first-child {
+				margin-top: 0;
+			}
+		}
+
+		.c-table--layout_column-media & {
+			@include breakMax($breakTablet) {
+				margin-top: 15px;
+			}
+		}
+	}
+}

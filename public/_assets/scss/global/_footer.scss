@@ -1,0 +1,156 @@
+@charset "utf-8";
+
+@use '../function'as *;
+@use '../utility'as *;
+
+//* footer
+//* -------------------------------------------------- */
+.g-footer {
+	display: block;
+	position: relative;
+	// margin-top: 100px;
+	background-color: $colorBg;
+	border-top: solid 1px rgba($colorFont, .2);
+	z-index: 3;
+
+	@include breakMin($breakTablet) {
+		// margin-top: 200px;
+	}
+
+	&_top {
+		display: block;
+		padding: 15px 0;
+
+		@include breakMin($breakTablet) {
+			padding: $padding 0;
+		}
+	}
+
+	&_bottom {
+		display: block;
+		padding: 10px 0;
+		border-top: solid 1px rgba($colorFont, .2);
+
+		@include breakMin($breakTablet) {
+			padding: 15px 0;
+		}
+	}
+
+	&_inner {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-between;
+
+		@include breakMin($breakTablet) {}
+
+		>* {
+			margin-top: 10px;
+
+			&:first-child {
+				margin-top: 0;
+			}
+		}
+	}
+
+	&_text {
+		display: block;
+		@include fontsize(11);
+		letter-spacing: .05em;
+		line-height: 1.6;
+
+		@include breakMin($breakTablet) {
+			@include fontsize(12);
+		}
+	}
+
+	&_copy {
+		display: block;
+		@include fontsize(10);
+		letter-spacing: .05em;
+		line-height: 1.6;
+		text-align: center;
+
+		@include breakMin($breakTablet) {
+			@include fontsize(11);
+		}
+	}
+
+	&_pagetop {}
+}
+
+//* pagetop
+//* -------------------------------------------------- */
+.g-pagetop {
+	position: fixed;
+	bottom: $padding;
+	right: $padding;
+	z-index: 10;
+
+	@include breakMin($breakTablet) {
+		bottom: $padding * 2;
+		right: $padding * 2;
+	}
+
+	.g-footer.is-pagetop_static & {
+		position: absolute;
+		top: -(55px + 40px + $padding);
+
+		@include breakMin($breakTablet) {
+			top: -(85px + 40px + $padding * 2);
+		}
+	}
+
+	&_button {
+		visibility: hidden;
+		display: block;
+		position: relative;
+		width: 55px;
+		height: 55px;
+		border-radius: 50%;
+		border: solid 1px $colorFont;
+		opacity: 0;
+		@include transition;
+
+		@include breakMin($breakTablet) {
+			width: 85px;
+			height: 85px;
+		}
+
+		&:before {
+			content: '';
+			display: block;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			width: 15px;
+			height: 15px;
+			border: solid 1px transparent;
+			border-top-color: $colorFont;
+			border-left-color: $colorFont;
+			transform: rotate(45deg) translate(-50%, 25%);
+			transform-origin: 50% 50%;
+
+			@include breakMin($breakTablet) {
+				width: 25px;
+				height: 25px;
+			}
+		}
+
+		&:hover {
+			background-color: $colorMain;
+			border-color: transparent;
+		}
+
+		html.is-fvover_active & {
+			visibility: visible;
+			opacity: 1;
+		}
+	}
+
+	&_name {
+		position: absolute;
+		color: transparent;
+		font-size: 0;
+	}
+}

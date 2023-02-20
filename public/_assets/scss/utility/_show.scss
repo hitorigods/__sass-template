@@ -1,0 +1,77 @@
+@charset "utf-8";
+
+@use "../function"as *;
+
+.u-show_media {
+	@include breakMin($breakTablet) {
+		display: none !important;
+	}
+
+	@media print {
+		display: none !important;
+	}
+}
+
+.u-hide_media {
+	@include breakMax($breakTablet) {
+		display: none !important;
+	}
+}
+
+.u-show_desktop {
+	@include breakMax($breakTablet) {
+		display: none !important;
+	}
+}
+
+.u-hide_desktop {
+	@include breakMin($breakTablet) {
+		display: none !important;
+	}
+
+	@media print {
+		display: none !important;
+	}
+}
+
+.u-show_tablet {
+	@include breakMin($breakMobile) {
+		display: none !important;
+	}
+
+	@include breakMax($breakMobile) {
+		display: none !important;
+	}
+
+	@media print {
+		display: none !important;
+	}
+}
+
+.u-hide_tablet {
+	@include break($breakMobile, $breakTablet) {
+		display: none !important;
+	}
+}
+
+.u-show_mobile {
+	@include breakMin($breakMobile) {
+		display: none !important;
+	}
+
+	@media print {
+		display: none !important;
+	}
+}
+
+.u-hide_mobile {
+	@include breakMax($breakMobile) {
+		display: none !important;
+	}
+}
+
+.u-print_hide {
+	@media print {
+		display: none !important;
+	}
+}

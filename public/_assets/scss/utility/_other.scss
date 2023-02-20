@@ -1,0 +1,180 @@
+@charset "utf-8";
+
+@use '../function'as *;
+
+//* scrollbar */
+.u-scrollbar {
+	&::-webkit-scrollbar {
+		width: 7px;
+		height: 7px;
+	}
+
+	&::-webkit-scrollbar-track {
+		background-color: $colorBg;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: $colorMain;
+	}
+}
+
+//* scrollon */
+.u-scrollon {
+	opacity: 0;
+	@include transition;
+	transform: translateY(30px);
+
+	@include breakMax($breakTablet) {}
+
+	&--type_reverse {
+		transform: translateY(-30px);
+	}
+
+	&.is-scrollon_active {
+		opacity: 1;
+		transform: translateY(0px);
+	}
+}
+
+//* typewriter */
+.u-typewriter {
+	&_string {
+		display: inline-block;
+
+		>* {
+			display: inline-block;
+			opacity: 0;
+			@include transition;
+
+			&.is-typewriter_active {
+				opacity: 1;
+			}
+		}
+	}
+}
+
+//* anchor */
+.u-anchor {
+	&:before {
+		content: '';
+		pointer-events: none;
+		visibility: hidden;
+		display: block;
+		position: relative;
+		margin-top: -(45px + 25px * 2);
+		padding-top: (45px + 25px * 2);
+		opacity: 0;
+		z-index: -1;
+
+		@include breakMin($breakTablet) {
+			margin-top: -(90px + 30px * 2);
+			padding-top: (90px + 30px * 2);
+		}
+	}
+}
+
+//* img */
+img.u-img_border {
+	border: solid 1px $colorLine;
+
+	@include breakMax($breakTablet) {}
+}
+
+//* img */
+.u-figure {
+	a {
+		display: block;
+
+		&:hover {}
+	}
+
+	img {
+		max-width: 100%;
+	}
+
+	&_caption {
+		display: block;
+		margin-top: 10px;
+		@include fontsize(12);
+		line-height: 1.5;
+
+		@include breakMin($breakTablet) {
+			@include fontsize(16);
+		}
+
+		@include breakMax($breakTablet) {}
+	}
+}
+
+//* area */
+.u-area {
+	padding: 30px;
+
+	@include breakMax($breakTablet) {
+		padding: 20px;
+	}
+}
+
+//* icon */
+.u-icon {
+	display: inline-block;
+	margin-right: .25em;
+	padding: 0.15em 0.5em;
+	color: #fff;
+	@include fontsize(14);
+	line-height: 1.5;
+	border-radius: 4px;
+
+	@include breakMax($breakTablet) {
+		@include fontsize(16);
+	}
+}
+
+//* table */
+.u-grid {
+	&_column {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		margin: -15px;
+
+		@include breakMax($breakTablet) {
+			// flex-direction: column;
+		}
+	}
+
+	&_cell {
+		display: block;
+		padding: 15px;
+	}
+}
+
+//* table */
+.u-table {
+	&_row {
+		.u-table--m-layout_column & {
+			@include breakMax($breakTablet) {
+				display: block;
+			}
+		}
+	}
+
+	&_head,
+	&_body {
+		.u-table--m-layout_column & {
+			@include breakMax($breakTablet) {
+				display: block;
+			}
+		}
+	}
+
+	&_head {
+		padding-right: 1em;
+	}
+
+	&_body {
+		.u-table--m-layout_column & {
+			@include breakMax($breakTablet) {}
+		}
+	}
+}

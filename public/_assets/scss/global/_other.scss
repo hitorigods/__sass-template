@@ -1,0 +1,10 @@
+@charset "utf-8";
+
+@use '../function'as *;
+@use '../utility'as *;
+
+//* title
+//* -------------------------------------------------- */
+.g-title {
+	@include breakMin($breakTablet) {}
+}

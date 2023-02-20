@@ -1,0 +1,239 @@
+@charset "utf-8";
+
+@use '../function'as *;
+@use '../utility'as *;
+
+//* header
+//* -------------------------------------------------- */
+.g-header {
+	@include breakMin($breakTablet) {}
+
+	&_logo {
+		position: fixed;
+		top: 25px;
+		left: $padding - 10px;
+		@include transition;
+		z-index: 99;
+
+		@include breakMin($breakTablet) {
+			top: 30px;
+			left: 30px;
+		}
+
+		a {
+			display: flex;
+			align-items: center;
+			padding: 10px 20px 10px 10px;
+			background-color: $colorBg;
+			text-decoration: none;
+
+			@include breakMin($breakTablet) {
+				padding: 20px 30px;
+			}
+		}
+
+		img {
+			width: 235px;
+
+			@include breakMin($breakTablet) {
+				width: 470px;
+			}
+		}
+	}
+
+	&_trigger {
+		position: fixed;
+		top: $padding;
+		right: $padding;
+		z-index: 101;
+
+		@include breakMin($breakTablet) {
+			top: 30px;
+			right: 30px;
+		}
+	}
+
+	&_cover {}
+}
+
+//* menu
+//* -------------------------------------------------- */
+.g-menu {
+	visibility: hidden;
+	display: block;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: $colorBg;
+	opacity: 0;
+	@include transition;
+	transform: scale(1.1);
+	z-index: 100;
+
+	@include breakMin($breakTablet) {}
+
+	html.is-menu_open & {
+		visibility: visible;
+		opacity: 1;
+		transform: scale(1);
+
+		@include breakMin($breakTablet) {}
+	}
+
+	&_frames {
+		padding-top: 100px;
+
+		@include breakMin($breakTablet) {
+			padding-top: 200px;
+		}
+	}
+
+	&_frame {
+		overflow: hidden auto;
+		max-height: calc(100vh - 100px);
+		max-height: calc(100svh - 100px);
+
+		@include breakMin($breakTablet) {
+			max-height: calc(100vh - 200px);
+			max-height: calc(100svh - 200px);
+		}
+	}
+
+	&_content {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		max-width: ($widthTablet + $padding * 2);
+		padding-bottom: 40px;
+
+		@include breakMin($breakTablet) {
+			flex-direction: row-reverse;
+			max-width: (1440 + $padding * 2);
+			padding-bottom: 0;
+		}
+	}
+
+	&_main {
+		display: block;
+		width: 100%;
+
+		@include breakMin($breakTablet) {
+			width: 670px;
+		}
+	}
+
+	&_nav {
+		display: block;
+
+		@include breakMin($breakTablet) {}
+	}
+
+	&_nav2 {
+		display: block;
+		margin-top: 40px;
+
+		@include breakMin($breakTablet) {
+			margin-top: 60px;
+		}
+	}
+
+	&_title {
+		display: block;
+		margin-top: 40px;
+
+		@include breakMin($breakTablet) {
+			margin-top: 0;
+			margin-right: 40px;
+		}
+	}
+}
+
+//* trigger
+//* -------------------------------------------------- */
+.g-trigger {
+	width: 55px;
+	height: 55px;
+	border: solid 1px $colorFont;
+	border-radius: 50%;
+	@include transition;
+
+	@include breakMin($breakTablet) {
+		width: 105px;
+		height: 105px;
+	}
+
+	&:hover {
+		background-color: $colorMain;
+		border-color: $colorMain;
+	}
+
+	html.is-menu_open & {
+		border-color: transparent;
+	}
+
+	&_icon {
+		display: flex;
+		position: relative;
+		width: 100%;
+		height: 100%;
+	}
+
+	&_line {
+		display: block;
+		position: absolute;
+		top: 50%;
+		left: 0;
+		right: 0;
+		width: 30px;
+		height: 1px;
+		margin: auto;
+		background-color: $colorFont;
+		@include transition;
+
+		@include breakMin($breakTablet) {
+			width: 45px;
+		}
+
+		html.is-menu_open & {
+			width: 40px;
+
+			@include breakMin($breakTablet) {
+				width: 60px;
+			}
+		}
+
+		&--type_1 {
+			margin-top: -7.5px;
+
+			@include breakMin($breakTablet) {
+				margin-top: -10px;
+			}
+
+			html.is-menu_open & {
+				margin-top: 0px;
+				transform: rotate(30deg);
+			}
+		}
+
+		&--type_2 {
+			html.is-menu_open & {
+				opacity: 0;
+			}
+		}
+
+		&--type_3 {
+			margin-top: 7.5px;
+
+			@include breakMin($breakTablet) {
+				margin-top: 10px;
+			}
+
+			html.is-menu_open & {
+				margin-top: 0px;
+				transform: rotate(150deg);
+			}
+		}
+	}
+}

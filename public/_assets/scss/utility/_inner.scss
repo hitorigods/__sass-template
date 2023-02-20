@@ -1,0 +1,95 @@
+@charset "utf-8";
+
+@use '../function'as *;
+
+.u-inner {
+	display: block;
+	width: 100%;
+	max-width: ($widthDesktop + $padding * 2);
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: $padding;
+	padding-right: $padding;
+
+	@include breakMin($breakTablet) {}
+
+	@include breakMax($breakTablet) {
+		max-width: ($widthTablet + $padding * 2);
+	}
+
+	& & {
+		@include breakMax($breakTablet) {}
+	}
+
+	&--width_full {
+		max-width: none;
+		padding-left: 60px;
+		padding-right: 60px;
+
+		@include breakMax($breakTablet) {
+			max-width: ($widthTablet + $padding * 2);
+			padding-left: $padding;
+			padding-right: $padding;
+		}
+	}
+
+	&--width_wide {
+		max-width: ($widthDesktopWide + $padding * 2);
+
+		@include breakMax($breakTablet) {
+			max-width: ($widthTablet + $padding * 2);
+		}
+	}
+
+	&--width_narrow {
+		max-width: ($widthDesktopNarrow + $padding * 2);
+
+		@include breakMax($breakTablet) {
+			max-width: ($widthTablet + $padding * 2);
+		}
+	}
+
+	&--width_1100 {
+		max-width: (1100px + $padding * 2);
+
+		@include breakMax($breakTablet) {
+			max-width: ($widthTablet + $padding * 2);
+		}
+	}
+
+	&--width_860 {
+		max-width: (860px + $padding * 2);
+
+		@include breakMax($breakTablet) {
+			max-width: ($widthTablet + $padding * 2);
+		}
+	}
+
+	&_child {
+		max-width: $widthDesktopNarrow;
+		margin-left: auto;
+		margin-right: auto;
+
+		&--width_default {
+			max-width: $widthDesktop;
+		}
+
+		&--width_1000 {
+			max-width: 1000px;
+		}
+
+		&--width_760 {
+			max-width: 760px;
+		}
+	}
+}
+
+@include breakMax($breakTablet) {
+	.u_m-inner {
+		&_child {
+			&--width_1000 {
+				max-width: (1000px);
+			}
+		}
+	}
+}

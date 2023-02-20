@@ -1,0 +1,264 @@
+@charset "utf-8";
+
+@use '../function'as *;
+@use '../utility'as *;
+
+//* column
+//* -------------------------------------------------- */
+.c-column {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+
+	@include breakMin($breakTablet) {
+		flex-direction: row;
+		justify-content: space-between;
+	}
+
+	&--direction_reverse {
+		@include breakMin($breakTablet) {
+			flex-direction: row-reverse;
+		}
+	}
+
+	&--align_center {
+		align-items: center;
+	}
+
+	&--has_button {
+		padding-bottom: 75px;
+
+		@include breakMin($breakTablet) {
+			padding-bottom: 0;
+		}
+	}
+
+	&_head {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+		@include breakMin($breakTablet) {
+			flex-basis: 400px;
+			align-items: flex-start;
+			padding-right: $padding * 2;
+		}
+
+		.c-column--direction_reverse & {
+			@include breakMin($breakTablet) {
+				padding-left: $padding * 2;
+				padding-right: 0;
+			}
+		}
+
+		.c-column--layout_slider & {
+			@include breakMin($breakTablet) {
+				flex-basis: 500px;
+				padding-right: 60px;
+			}
+		}
+
+		.c-column--layout_slider.c-column--direction_reverse & {
+			@include breakMin($breakTablet) {
+				padding-left: 60px;
+				padding-right: 0;
+			}
+		}
+	}
+
+	&_body {
+		display: block;
+		margin-top: 40px;
+
+		@include breakMin($breakTablet) {
+			flex: 1;
+			margin-top: 0;
+		}
+
+		.c-column--align_center & {
+			margin-top: 0;
+
+			@include breakMin($breakTablet) {
+				margin-top: 10px;
+			}
+		}
+
+		.c-column--layout_slider & {
+			@include breakMin($breakTablet) {
+				width: calc(100% - 500px);
+			}
+		}
+	}
+
+	&_title {
+		@include breakMin($breakTablet) {}
+	}
+
+	&_button {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		margin: auto;
+
+		@include breakMin($breakTablet) {
+			position: static;
+			margin: 40px 0 0;
+		}
+	}
+
+	&_slider {
+		@include breakMin($breakTablet) {}
+	}
+}
+
+//* column2
+//* -------------------------------------------------- */
+.c-column2 {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	background: url(../img/common/texture_01_gray.png) repeat center center / 300px auto;
+
+	@include breakMin($breakTablet) {
+		align-items: center;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+
+	&_content {
+		padding: 30px $padding;
+
+		@include breakMin($breakTablet) {
+			flex: 1;
+			order: 1;
+			padding: $padding 60px;
+		}
+	}
+
+	&_visual {
+		@include breakMin($breakTablet) {
+			flex-basis: 580px;
+			order: 2;
+			height: 100%;
+		}
+	}
+
+	&_title {
+		@include breakMin($breakTablet) {}
+	}
+
+	&_lead {
+		margin-top: 20px;
+		text-align: justify;
+
+		@include breakMin($breakTablet) {
+			margin-top: 40px;
+		}
+	}
+
+	&_thumb {
+		height: 100%;
+
+		@include breakMin($breakTablet) {}
+
+		img {
+			object-fit: contain;
+			width: 100%;
+			max-height: 100%;
+		}
+	}
+}
+
+//* column3
+//* -------------------------------------------------- */
+.c-column3 {
+	@include breakMin($breakTablet) {
+		display: flex;
+	}
+
+	&--direction_reverse {
+		@include breakMin($breakTablet) {
+			flex-direction: row-reverse;
+		}
+	}
+
+	&_visual {
+		@include breakMin($breakTablet) {
+			flex-basis: calc(100% * #{860px / $widthDesktopWide});
+		}
+
+		img {
+			width: 100%;
+		}
+	}
+
+	&_main {
+		margin-top: 20px;
+
+		@include breakMin($breakTablet) {
+			display: flex;
+			flex: 1;
+			justify-content: center;
+			margin-top: 0;
+			padding: 0 $padding;
+		}
+	}
+
+	&_content {
+		overflow: hidden;
+		position: relative;
+		padding-bottom: $padding;
+
+		@include breakMin($breakTablet) {
+			width: 480px;
+			max-width: 100%;
+			height: 100%;
+		}
+
+		>* {
+			margin-top: 20px;
+
+			@include breakMin($breakTablet) {
+				margin-top: 30px;
+			}
+
+			&:first-child {
+				margin-top: 0;
+			}
+		}
+
+		&:before {
+			content: '';
+			display: block;
+			position: absolute;
+			bottom: 0;
+			right: 0;
+			border: solid 15px transparent;
+			border-right-color: $colorMain;
+			transform: translate(0, 50%);
+
+			@include breakMin($breakTablet) {
+				border-width: 20px;
+			}
+
+			.c-column3--direction_reverse & {
+				@include breakMin($breakTablet) {
+					left: 0;
+					right: auto;
+					border-left-color: $colorMain;
+					border-right-color: transparent;
+				}
+			}
+		}
+	}
+
+	&_title {}
+
+	&_lead {
+		text-align: justify;
+	}
+}

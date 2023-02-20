@@ -1,0 +1,118 @@
+@charset "utf-8";
+
+@use "variable" as *;
+
+// Font Size Rem
+@mixin fontsize($size: $baseFontSize) {
+	font-size: $size + px;
+	font-size: ($size / 10) * 1rem;
+	//font-size: ($size / $baseFontSize) * 1rem;
+}
+
+// Font Size 0
+@mixin fontSize0 {
+	color: transparent;
+	font-size: 0;
+	line-height: 0;
+}
+
+// min-height
+@mixin minHeight($val) {
+	min-height: $val;
+	_height: $val;
+}
+
+// Opacity
+@mixin opacity($val: $opacity) {
+	opacity: $val;
+	filter: alpha(opacity=$val * 100);
+}
+
+// Opacity 1
+@mixin opacity1 {
+	opacity: 1;
+	filter: none;
+}
+
+// Opacity 0
+@mixin opacity0 {
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+
+// Background Size
+@mixin bgSize($w, $h: auto) {
+	@each $prefix in $prefixes {
+		#{$prefix}background-size: $w $h;
+	}
+}
+
+// KeyFrames
+@mixin keyframes($name) {
+	@-webkit-keyframes #{$name} {
+		@content;
+	}
+	@-moz-keyframes #{$name} {
+		@content;
+	}
+	@keyframes #{$name} {
+		@content;
+	}
+}
+// Animation
+@mixin animation($val) {
+	@each $prefix in $animPrefixes {
+		#{$prefix}#{animation}: $val;
+		#{$prefix}#{animation-fill-mode}: both;
+	}
+}
+
+// Transition
+@mixin transition($s: $transitionSpeed, $property: all) {
+	//-webkit-transition: $property $s + s cubic-bezier(0.75, 0, 0.35, 1);
+	transition: $property $s + s ease-in-out;
+	//transition: $property $s + s cubic-bezier(0.75, 0, 0.35, 1);
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
+// Transition None
+@mixin transitionNone {
+	-webkit-transition: none;
+	transition: none;
+}
+
+// Rotate
+@mixin rotate($deg: $rotateValue) {
+	-webkit-transform: rotate($deg);
+	transform: rotate($deg);
+}
+
+//Clearfix
+@mixin clearfix {
+	*zoom: 1;
+
+	&:after {
+		content: "";
+		display: block;
+		clear: both;
+		height: 0;
+		visibility: hidden;
+	}
+}
+
+// Media Screen Size
+@mixin break($width-min, $width-max) {
+	@media screen and (min-width: $width-min) and (max-width: $width-max) {
+		@content;
+	}
+}
+@mixin breakMax($width) {
+	@media screen and (min-width: 1px) and (max-width: $width) {
+		@content;
+	}
+}
+@mixin breakMin($width) {
+	@media screen and (min-width: $width) {
+		@content;
+	}
+}

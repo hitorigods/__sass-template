@@ -1,0 +1,1332 @@
+@charset "utf-8";
+
+@use '../function'as *;
+@use '../utility'as *;
+
+
+//* logo
+//* -------------------------------------------------- */
+.c-logo {
+	display: flex;
+	justify-content: center;
+
+	@include breakMin($breakTablet) {}
+
+	img {
+		width: 250px;
+
+		@media screen and (min-height: 700px) {
+			width: ((492px - 250px) / 2 + 250px);
+		}
+
+		@include breakMin($breakTablet) {
+			width: 492px;
+		}
+	}
+
+	&_box {
+		display: block;
+		position: relative;
+		padding: 20px 35px;
+
+		@include breakMin($breakTablet) {
+			padding: 30px 70px 40px;
+		}
+
+		&:before,
+		&:after {
+			content: '';
+			display: block;
+			position: absolute;
+			width: 50px;
+			height: 50px;
+			border: solid 2px transparent;
+
+			@include breakMin($breakTablet) {
+				width: 90px;
+				height: 90px;
+				border-width: 3px;
+			}
+		}
+
+		&:before {
+			top: 0;
+			left: 0;
+			border-top-color: $colorMain;
+			border-left-color: $colorMain;
+		}
+
+		&:after {
+			bottom: 0;
+			right: 0;
+			border-bottom-color: $colorMain;
+			border-right-color: $colorMain;
+		}
+	}
+}
+
+//* opening
+//* -------------------------------------------------- */
+.c-opening {
+	display: block;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: $colorBg;
+	z-index: 200;
+
+	@include breakMin($breakTablet) {}
+
+	&.is-opening_ready {
+		@include breakMin($breakTablet) {}
+	}
+
+	&.is-opening_finish {
+		pointer-events: none;
+		visibility: hidden;
+		opacity: 0;
+		@include transition;
+		transition-property: visibility, opacity;
+		transition-duration: 2s;
+	}
+
+	&.is-opening_none {
+		display: none;
+	}
+
+	&_front {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		z-index: 2;
+
+		@include breakMin($breakTablet) {}
+	}
+
+	&_main {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		height: 100%;
+		// padding: $padding;
+
+		@include breakMin($breakTablet) {}
+	}
+
+	&_frame {
+		overflow: hidden;
+		width: 0%;
+		margin: (30px / 2) 0;
+		opacity: 0;
+
+		@media screen and (min-height: 700px) {
+			margin: (55px / 2) 0;
+		}
+
+		@include breakMin($breakTablet) {
+			margin: (80px / 2) 0;
+		}
+
+		.c-opening.is-opening_ready &,
+		.c-opening.is-opening_finish & {
+			width: 100%;
+			opacity: 1;
+		}
+
+		.c-opening.is-opening_ready & {
+			@include transition;
+			transition-property: width, opacity;
+			transition-duration: 2.5s;
+		}
+
+		&:nth-child(1) {}
+
+		&:nth-child(2) {
+			.c-opening.is-opening_ready & {
+				transition-delay: 1s;
+			}
+		}
+	}
+
+	&_label {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		width: 100vw;
+	}
+
+	&_copy {
+		display: block;
+		white-space: nowrap;
+		@include fontsize(30);
+		font-weight: 400;
+		// line-height: 1.5;
+
+		@media screen and (min-height: 500px) {}
+
+		@media screen and (min-height: 700px) {
+			@include fontsize(50);
+		}
+
+		@media screen and (min-height: 900px) {}
+
+		@include breakMin($breakTablet) {
+			@include fontsize(80);
+		}
+
+		img {
+			height: 30px;
+
+			@media screen and (min-height: 700px) {
+				height: ((80px - 30px) / 2 + 30px);
+			}
+
+			@include breakMin($breakTablet) {
+				height: 80px;
+			}
+		}
+
+		.c-opening--lang_en & {
+			img {
+				height: 25px;
+
+				@media screen and (min-height: 700px) {
+					height: ((80px - 25px) / 2 + 25px);
+				}
+
+				@include breakMin($breakTablet) {
+					height: 80px;
+				}
+			}
+		}
+
+		.c-opening_frame:nth-child(1) & {
+			img {}
+		}
+
+		.c-opening_frame:nth-child(2) & {
+			img {}
+		}
+	}
+
+	&_back {
+		overflow: hidden;
+		display: block;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background-color: $colorBg;
+		z-index: 1;
+
+		@include breakMin($breakTablet) {}
+
+		&:before {
+			content: '';
+			display: block;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background-color: rgba($colorBg, .5);
+			z-index: 2;
+		}
+
+		.c-opening.is-opening_ready & {
+			@include breakMin($breakTablet) {
+				right: 6px;
+			}
+		}
+	}
+
+	&_visual {
+		display: block;
+		position: relative;
+		width: 100%;
+		height: 100%;
+		background: url(../img/common/opening_visual@media.jpg) no-repeat center center / cover;
+		opacity: 0;
+		transform: scale(1.1);
+		z-index: 1;
+
+		@include breakMin($breakTablet) {
+			background-image: url(../img/common/opening_visual.jpg);
+		}
+
+		.c-opening.is-opening_ready &,
+		.c-opening.is-opening_finish & {
+			opacity: 1;
+			transform: scale(1);
+		}
+
+		.c-opening.is-opening_ready & {
+			@include transition;
+			transition-property: opacity, transform;
+			transition-duration: 2s;
+			transition-delay: 2s;
+		}
+
+		.c-opening.is-opening_finish & {}
+	}
+}
+
+//* hero
+//* -------------------------------------------------- */
+.c-hero {
+	position: relative;
+	height: 100vh;
+	height: 100svh;
+
+	@include breakMin($breakTablet) {}
+
+	&_content {
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		z-index: 1;
+	}
+
+	&_inner {
+		position: relative;
+		z-index: 2;
+	}
+
+	&_main {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 100vh;
+		height: 100svh;
+
+		@include breakMin($breakTablet) {}
+	}
+
+	&_logo {}
+
+	&_bgs {
+		display: block;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		z-index: 1;
+
+		&:before {
+			content: '';
+			display: block;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background-color: rgba($colorBg, .5);
+			z-index: 2;
+		}
+	}
+
+	&_bg {
+		overflow: hidden;
+		display: block;
+		position: relative;
+		width: 100vw;
+		height: 100vh;
+
+		video {
+			display: block;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			min-width: 100%;
+			min-height: 100%;
+			background-color: #000;
+			transform: translate(-50%, -50%);
+
+			@include breakMin($breakTablet) {}
+		}
+	}
+
+	&_image {
+		display: block;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background: no-repeat center center / cover;
+	}
+}
+
+//* hero2
+//* -------------------------------------------------- */
+.c-hero2 {
+	position: relative;
+	z-index: 2;
+
+	@include breakMin($breakTablet) {}
+
+	&_inner {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		min-height: 250px;
+		z-index: 2;
+
+		@include breakMin($breakTablet) {
+			min-height: 500px;
+		}
+	}
+
+	&_main {
+		display: block;
+	}
+
+	&_title {
+		display: block;
+		font-family: $fontMincho;
+		@include fontsize(35);
+		font-weight: 400;
+		letter-spacing: .1em;
+		line-height: 1.4;
+		text-align: center;
+
+		@include breakMin($breakTablet) {
+			@include fontsize(70);
+		}
+	}
+
+	&_bg {
+		display: block;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		z-index: 1;
+
+		&:after {
+			content: '';
+			display: block;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background-color: rgba($colorBg, .5);
+			z-index: 2;
+		}
+	}
+
+	&_image {
+		display: block;
+		width: 100%;
+		height: 100%;
+		background: no-repeat center center / cover;
+	}
+}
+
+//* slider
+//* -------------------------------------------------- */
+.c-slider {
+	position: relative;
+
+	@include breakMin($breakTablet) {}
+
+	&_items {
+		display: block;
+	}
+
+	&_item {
+		display: block;
+
+		img {
+			object-fit: contain;
+			display: block;
+			width: calc(100vw - #{$padding * 2});
+			height: calc((100vw - #{$padding * 2}) * 600 / 1000);
+			background: url(../img/common/texture_01_gray.png) repeat center center / 300px auto;
+
+			@include breakMin(#{$widthTablet + $padding * 2}) {
+				width: $widthTablet;
+				height: calc((#{$widthTablet}) * 600 / 1000);
+			}
+
+			@include breakMin($breakTablet) {
+				width: 100%;
+				height: 600px;
+			}
+		}
+	}
+
+	&_dots {
+		display: block;
+		position: absolute;
+		top: calc((100vw - #{$padding * 2}) * 600 / 1000 - 20px);
+		right: 10px;
+		z-index: 2;
+
+		@include breakMin($widthTablet) {
+			top: calc((#{$widthTablet}) * 600 / 1000 - 20px);
+		}
+
+		@include breakMin($breakTablet) {
+			top: 570px;
+			right: $padding;
+		}
+	}
+
+	&_arrows {
+		display: none;
+		position: absolute;
+		bottom: 10px;
+		right: 10px;
+		z-index: 2;
+
+		@include breakMin($breakTablet) {
+			bottom: $padding;
+			right: $padding;
+		}
+	}
+
+	.slick-dots {
+		display: flex;
+		align-items: center;
+		margin: -5px;
+
+		li {
+			display: block;
+			margin: 5px;
+
+			button {
+				display: block;
+				width: 10px;
+				height: 10px;
+				background-color: $colorFont;
+				color: transparent;
+				font-size: 0;
+				border-radius: 50%;
+
+				&:hover {
+					background-color: $colorSub;
+				}
+			}
+
+			&.slick-active {
+				button {
+					background-color: $colorSub;
+				}
+			}
+		}
+	}
+}
+
+//* gallery
+//* -------------------------------------------------- */
+.c-gallery {
+	position: relative;
+
+	@include breakMin($breakTablet) {}
+
+	&_items {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: baseline;
+		margin-top: -40px;
+
+		@include breakMin($breakTablet) {
+			justify-content: center;
+			margin: -20px;
+		}
+	}
+
+	&_item {
+		display: block;
+		margin-top: 40px;
+
+		@include breakMin($breakTablet) {
+			margin-top: 0;
+			padding: 20px;
+		}
+
+		img {
+			width: 100%;
+			box-shadow: 15px 0px 30px rgba($colorBg, .3);
+
+			@include breakMin($breakTablet) {
+				box-shadow: 20px 0px 40px rgba($colorBg, .3);
+			}
+		}
+
+		&:nth-child(1) {
+			width: calc(100% - #{$padding * 0});
+			transform: translate(#{-$padding}, 0);
+
+			@include breakMin($breakTablet) {
+				width: calc(100% * #{930px / $widthDesktopWide});
+				transform: translate(0, 0);
+			}
+
+			img {
+				@include breakMin($breakTablet) {
+					margin-bottom: 80px;
+				}
+			}
+		}
+
+		&:nth-child(2) {
+			width: calc(100% - 30px);
+			margin-left: auto;
+			transform: translate(#{$padding * 2}, 0);
+
+			@include breakMin($breakTablet) {
+				width: calc(100% * #{530px / $widthDesktopWide});
+				transform: translate(0, 0);
+			}
+		}
+
+		&:nth-child(3) {
+			width: calc(100% - #{$padding * 1});
+			margin-top: 20px;
+
+			@include breakMin($breakTablet) {
+				width: calc(100% * #{850px / $widthDesktopWide});
+				margin-top: 0;
+				margin-left: -75px;
+			}
+		}
+	}
+}
+
+//* map
+//* -------------------------------------------------- */
+.c-map {
+	@include breakMin($breakTablet) {}
+
+	iframe {
+		width: 100%;
+		height: 230px;
+		box-shadow: 15px 0px 30px rgba($colorBg, .3);
+		filter: grayscale(1);
+		@include transition;
+		transition-property: filter;
+
+		@include breakMin($breakTablet) {
+			height: 600px;
+			box-shadow: 20px 0px 40px rgba($colorBg, .3);
+		}
+
+		&:hover {
+			filter: grayscale(0);
+		}
+	}
+}
+
+//* video
+//* -------------------------------------------------- */
+.c-video {
+	@extend .c-map;
+
+	@include breakMin($breakTablet) {}
+
+	iframe {
+		aspect-ratio: 4 / 3;
+		height: auto;
+		filter: grayscale(0);
+
+		@include breakMin($breakTablet) {}
+	}
+}
+
+//* detail
+//* -------------------------------------------------- */
+.c-detail {
+	@include breakMin($breakTablet) {}
+
+	&_hero {
+		margin-bottom: 30px;
+
+		@include breakMin($breakTablet) {
+			margin-bottom: 60px;
+		}
+
+		img {
+			width: 100%;
+		}
+	}
+
+	&_head {
+		display: block;
+
+		@include breakMin($breakTablet) {}
+
+		>* {
+			margin-top: 20px;
+
+			@include breakMin($breakTablet) {
+				margin-top: 30px;
+			}
+
+			&:first-child {
+				margin-top: 0;
+
+				@include breakMin($breakTablet) {}
+			}
+		}
+
+		&--style_border {
+			position: relative;
+			padding-bottom: 20px;
+			border-bottom: 1px solid $colorSub;
+
+			@include breakMin($breakTablet) {
+				padding-bottom: 40px;
+			}
+
+			&:after {
+				content: '';
+				display: block;
+				position: absolute;
+				bottom: -1px;
+				right: 0;
+				width: 50px;
+				height: 1px;
+				background-color: $colorMain;
+				z-index: 2;
+
+				@include breakMin($breakTablet) {
+					width: 150px;
+				}
+			}
+		}
+	}
+
+	&_body {
+		display: block;
+		margin-top: 30px;
+		@include fontsize(13);
+		line-height: 1.8;
+
+		@include breakMin($breakTablet) {
+			margin-top: 60px;
+			@include fontsize(18);
+		}
+
+		>* {
+			margin-top: 50px;
+
+			@include breakMin($breakTablet) {
+				margin-top: 100px;
+			}
+
+			&:first-child {
+				margin-top: 0;
+
+				@include breakMin($breakTablet) {}
+			}
+		}
+
+		&--style_post {
+			text-align: justify;
+
+			>* {
+				margin-top: 30px;
+
+				@include breakMin($breakTablet) {
+					margin-top: 40px;
+				}
+
+				&:first-child {
+					margin-top: 0;
+
+					@include breakMin($breakTablet) {}
+				}
+			}
+
+			iframe {
+				max-width: 100%;
+
+				@include breakMax($breakTablet) {
+					width: 100%;
+					height: calc((100vw - #{$padding * 2}) * (9 / 16));
+				}
+
+				@include breakMin($breakTablet) {}
+			}
+		}
+	}
+
+	&_bottom {
+		margin-top: 50px;
+
+		@include breakMin($breakTablet) {
+			margin-top: 100px;
+		}
+	}
+
+	&_column {
+		@include breakMin($breakTablet) {
+			display: flex;
+			align-items: baseline;
+		}
+
+		>* {
+			margin-top: 15px;
+
+			@include breakMin($breakTablet) {
+				margin-top: 0;
+				margin-left: 30px;
+			}
+
+			&:first-child {
+				@include breakMin($breakTablet) {
+					margin-left: 0;
+				}
+			}
+		}
+	}
+
+	&_column2 {
+		display: flex;
+
+		@include breakMin($breakTablet) {}
+	}
+
+	&_block {
+		@include breakMin($breakTablet) {}
+
+		>* {
+			margin-top: 20px;
+
+			@include breakMin($breakTablet) {
+				margin-top: 30px;
+			}
+
+			&:first-child {
+				margin-top: 0;
+
+				@include breakMin($breakTablet) {}
+			}
+		}
+	}
+
+	&_copy {
+		display: inline-block;
+		padding: 5px 10px;
+		background-color: $colorMain;
+		@include fontsize(13);
+		font-weight: 700;
+		letter-spacing: .1em;
+		line-height: 1.3;
+		text-align: center;
+		white-space: nowrap;
+
+		@include breakMin($breakTablet) {
+			padding: 7.5px 20px;
+			@include fontsize(18);
+		}
+	}
+
+	&_title {
+		display: block;
+		@include fontsize(21);
+		font-weight: 700;
+		letter-spacing: .1em;
+		line-height: 1.3;
+		text-align: justify;
+
+		@include breakMin($breakTablet) {
+			@include fontsize(32);
+		}
+	}
+
+	&_title2 {
+		display: block;
+		@include fontsize(15);
+		font-weight: 700;
+		letter-spacing: .1em;
+		line-height: 1.3;
+
+		@include breakMin($breakTablet) {
+			@include fontsize(24);
+		}
+	}
+
+	&_lead {
+		@include breakMin($breakTablet) {}
+	}
+
+	&_date {
+		display: block;
+		color: $colorMain;
+		@include fontsize(14);
+		font-weight: 700;
+		letter-spacing: .1em;
+		line-height: 1.5;
+
+		@include breakMin($breakTablet) {
+			@include fontsize(20);
+		}
+	}
+
+	&_datas {
+		@include breakMin($breakTablet) {}
+	}
+
+	&_figure {
+		img {}
+
+		@include breakMin($breakTablet) {}
+	}
+
+	&_slider {
+		@include breakMin($breakTablet) {}
+	}
+
+	&_button {
+		display: flex;
+		justify-content: center;
+	}
+}
+
+//* icons
+//* -------------------------------------------------- */
+.c-icons {
+	@include breakMin($breakTablet) {}
+
+	&_items {
+		display: flex;
+		align-items: center;
+		margin: -15px;
+
+		@include breakMin($breakTablet) {}
+	}
+
+	&_item {
+		display: block;
+		padding: 15px;
+
+		@include breakMin($breakTablet) {}
+	}
+
+	&_box {
+		display: flex;
+		position: relative;
+
+		@include breakMin($breakTablet) {}
+
+		&:before {
+			content: '';
+			display: block;
+			width: 15px;
+			height: 20px;
+			margin-right: 10px;
+			background: no-repeat center center / auto 100%;
+
+			@include breakMin($breakTablet) {
+				width: 20px;
+				height: 30px;
+			}
+		}
+
+		.c-icons_item--type_pin & {
+			&:before {
+				background-image: url(../img/common/icon_pin_gold.svg);
+			}
+		}
+
+		.c-icons_item--type_train & {
+			&:before {
+				background-image: url(../img/common/icon_train_gold.svg);
+			}
+		}
+	}
+
+	&_label {
+		display: block;
+		@include fontsize(13);
+		line-height: 1.5;
+
+		@include breakMin($breakTablet) {
+			@include fontsize(18);
+		}
+	}
+}
+
+//* banner
+//* -------------------------------------------------- */
+.c-banner {
+	@include breakMin($breakTablet) {}
+
+	a {
+		text-decoration: none;
+	}
+
+	&_box {
+		display: block;
+		position: relative;
+		background-color: $colorMain;
+
+		@include breakMin($breakTablet) {
+			display: flex;
+		}
+
+		&:after {
+			content: '';
+			display: block;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background: url(../img/common/texture_01_red.png) repeat center center/300px auto;
+			opacity: 0;
+			z-index: 1;
+		}
+
+		&:hover {
+			color: $colorFont;
+
+			&:after {
+				opacity: 1;
+			}
+		}
+	}
+
+	&_column {
+		display: block;
+		position: relative;
+		z-index: 2;
+
+		@include breakMin($breakTablet) {
+			display: flex;
+		}
+	}
+
+	&_thumb {
+		overflow: hidden;
+
+		@include breakMin($breakTablet) {
+			flex: 1;
+		}
+
+		img {
+			object-fit: cover;
+			width: 100%;
+			height: 100%;
+			min-height: 140px;
+			@include transition;
+
+			@include breakMin($breakTablet) {
+				min-height: 150px;
+			}
+
+			a:hover & {}
+		}
+	}
+
+	&_body {
+		display: block;
+		padding: 10px;
+
+		@include breakMin($breakTablet) {
+			flex-basis: 350px;
+			padding: 15px;
+		}
+	}
+
+	&_main {
+		overflow: hidden;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		height: 100%;
+		min-height: 50px;
+
+		@include breakMin($breakTablet) {
+			min-height: none;
+		}
+
+		&:before {
+			content: '';
+			display: block;
+			position: absolute;
+			bottom: 0;
+			right: 0;
+			border: solid 10px transparent;
+			border-right-color: $colorSub;
+			transform: translate(0, 50%);
+			@include transition;
+
+			@include breakMin($breakTablet) {}
+
+			a:hover & {}
+		}
+	}
+
+	&_label {
+		display: block;
+		position: relative;
+		text-align: center;
+
+		@include breakMin($breakTablet) {}
+
+		>* {
+			@include breakMin($breakTablet) {
+				margin-top: 10px;
+			}
+
+			&:first-child {
+				margin-top: 0;
+			}
+		}
+	}
+
+	&_copy {
+		display: block;
+		@include fontsize(13);
+		line-height: 1.5;
+		letter-spacing: .05em;
+
+		@include breakMin($breakTablet) {
+			@include fontsize(16);
+		}
+	}
+
+	&_title {
+		display: block;
+		@include fontsize(15);
+		font-weight: 500;
+		line-height: 1.5;
+		letter-spacing: .05em;
+
+		@include breakMin($breakTablet) {
+			@include fontsize(20);
+		}
+	}
+}
+
+//* pager
+//* -------------------------------------------------- */
+.c-pager {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	@include breakMin($breakTablet) {}
+
+	.wp-pagenavi {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		margin: -5px;
+		padding: 0 (55px - 5px * 2);
+
+		@include breakMin($breakTablet) {
+			padding-left: (80px - 5px * 2);
+			padding-right: (80px - 5px * 2);
+		}
+
+		a,
+		span {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			min-width: 30px;
+			height: 35px;
+			margin: 5px;
+			padding: 5px 10px;
+			@include fontsize(16);
+			border: solid 1px rgba($colorFont, .5);
+
+			@include breakMin($breakTablet) {
+				min-width: 45px;
+				height: 50px;
+				@include fontsize(20);
+			}
+		}
+
+		a {
+			color: rgba($colorFont, .5);
+			text-decoration: none;
+
+			&:hover {
+				background-color: $colorFont;
+				color: $colorBg;
+			}
+		}
+
+		span {}
+
+		.pages {
+			display: none;
+		}
+
+		.first {
+			display: none;
+		}
+
+		.last {
+			display: none;
+		}
+
+		.previouspostslink,
+		.nextpostslink {
+			position: absolute;
+			top: calc(50% - 5px);
+			color: transparent;
+			font-size: 0;
+			transform: translate(0, -50%);
+
+			&:before {
+				content: '';
+				display: block;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				width: 10px;
+				height: 10px;
+				border: solid 1px transparent;
+			}
+		}
+
+		.previouspostslink {
+			left: 0;
+
+			&:before {
+				border-top-color: rgba($colorFont, .5);
+				border-left-color: rgba($colorFont, .5);
+				transform: translate(-50%, -50%) rotate(-45deg);
+				transform-origin: 75% 25%;
+			}
+
+			&:hover {
+				&:before {
+					border-top-color: rgba($colorBg, 1);
+					border-left-color: rgba($colorBg, 1);
+				}
+			}
+		}
+
+		.nextpostslink {
+			right: 0;
+
+			&:before {
+				border-bottom-color: rgba($colorFont, .5);
+				border-right-color: rgba($colorFont, .5);
+				transform: translate(-75%, -50%) rotate(-45deg);
+				transform-origin: 50% 50%;
+			}
+
+			&:hover {
+				&:before {
+					border-bottom-color: rgba($colorBg, 1);
+					border-right-color: rgba($colorBg, 1);
+				}
+			}
+		}
+
+		.page {}
+
+		.current {
+			background-color: $colorFont;
+			color: $colorBg;
+		}
+
+		.smaller {}
+
+		.larger {}
+
+		.extend {
+			min-width: auto;
+			padding: 5px 0;
+			border: none;
+		}
+	}
+}
+
+//* comingsoon
+//* -------------------------------------------------- */
+.c-comingsoon {
+	display: flex;
+	justify-content: center;
+
+	@include breakMin($breakTablet) {}
+
+	&_label {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 250px;
+		height: 50px;
+		padding: $padding;
+		color: $colorFont;
+		background-color: rgba($colorSub, .5);
+
+		@include breakMin($breakTablet) {
+			width: 500px;
+			height: 100px;
+		}
+	}
+
+	&_text {
+		display: block;
+		@include fontsize(16);
+		font-weight: 400;
+		letter-spacing: .15em;
+
+		@include breakMin($breakTablet) {
+			@include fontsize(26);
+		}
+	}
+}
+
+//* postmore
+//* -------------------------------------------------- */
+.c-postmore {
+	@include breakMin($breakTablet) {}
+
+	&_button {
+		@include breakMin($breakTablet) {}
+	}
+
+	&_status {}
+
+	&_text {
+		@extend .u-lead;
+		margin-top: 50px;
+		text-align: center;
+
+		@include breakMin($breakTablet) {
+			margin-top: 100px;
+		}
+
+		&--type_load {}
+
+		&--type_last {
+			display: none !important;
+		}
+
+		&--type_error {}
+	}
+}
+
+//* xxxxx
+//* -------------------------------------------------- */
+.c-xxxxx {
+	@include breakMin($breakTablet) {}
+
+	&xxxxx {
+		@include breakMin($breakTablet) {}
+	}
+}

@@ -1,0 +1,188 @@
+@charset "utf-8";
+
+@use '../function'as *;
+@use '../utility'as *;
+
+//* wrapper
+//* -------------------------------------------------- */
+.g-wrapper {
+	.g-body[class*='m-home'] & {}
+}
+
+//* home
+//* -------------------------------------------------- */
+.m-home {
+	@include breakMin($breakTablet) {}
+
+	.g-header_logo {
+		visibility: hidden;
+		opacity: 0;
+
+		html.is-fvover_active & {
+			visibility: visible;
+			opacity: 1;
+		}
+	}
+
+	.g-footer.is-pagetop_static .g-pagetop {
+		top: -(55px + 0px + $padding);
+
+		@include breakMin($breakTablet) {
+			top: -(85px + 0px + $padding * 2);
+		}
+	}
+
+	.g-content {
+		padding-top: 0;
+		padding: 0;
+
+		@include breakMin($breakTablet) {}
+	}
+
+	&__hero {
+		@include breakMin($breakTablet) {}
+
+		html.is-fvover_active & {
+			visibility: hidden;
+		}
+	}
+
+	&__news {
+		overflow: hidden;
+		// padding-top: 60px;
+		background-color: $colorBg;
+
+		@include breakMin($breakTablet) {
+			// padding-top: 120px;
+		}
+
+		.c-section_slash {
+			top: 280px;
+			height: 100vh;
+			transform: skew(0, 10deg) translate(0, -100%);
+
+			@include breakMin($breakTablet) {}
+		}
+	}
+
+	&__experience {
+		overflow: hidden;
+		// padding-top: 100px;
+		// padding-bottom: 100px;
+		background-color: $colorBg;
+
+		@include breakMin($breakTablet) {
+			// padding-top: 200px;
+			// padding-bottom: 200px;
+		}
+
+		.c-section_slash {
+			top: 350px;
+			bottom: 0;
+			transform: skew(0, 10deg) translate(0, -0%);
+			transform-origin: 0 0;
+
+			@include breakMin($breakTablet) {
+				top: 700px;
+			}
+		}
+	}
+
+	&__tour {
+		overflow: hidden;
+		position: relative;
+		// padding-top: 90px;
+		// padding-bottom: 80px;
+
+		@include breakMin($breakTablet) {
+			// padding-top: 120px;
+			// padding-bottom: 170px;
+		}
+
+		&:after,
+		&:before {
+			content: '';
+			display: block;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+		}
+
+		&:before {
+			position: absolute;
+			background-color: rgba($colorBg, .8);
+			z-index: 2;
+		}
+
+		&:after {
+			visibility: hidden;
+			position: fixed;
+			background: url(../img/home/tour_bg.jpg) repeat center center / cover;
+			z-index: -1;
+
+			@include breakMin($breakTablet) {}
+
+			html.is-fvover_active & {
+				visibility: visible;
+			}
+		}
+
+		.c-heading_sub {
+			@include breakMin($breakTablet) {}
+		}
+
+		.c-section_inner {
+			position: relative;
+			z-index: 3;
+
+			@include breakMin($breakTablet) {}
+		}
+
+		&_list {
+			margin-top: 40px;
+
+			@include breakMin($breakTablet) {
+				margin-top: 80px;
+			}
+		}
+	}
+
+	&__archives {
+		overflow: hidden;
+		// padding-top: 100px;
+		// padding-bottom: 100px;
+		background-color: $colorBg;
+
+		@include breakMin($breakTablet) {
+			// padding-top: 200px;
+			// padding-bottom: 200px;
+		}
+
+		@include breakMin($breakTablet) {}
+
+		.c-section_slash {
+			top: 350px;
+			height: 100%;
+			transform: skew(0, -10deg) translate(0, -0%);
+			transform-origin: 100% 0;
+
+			@include breakMin($breakTablet) {
+				top: 750px;
+			}
+		}
+
+		&_nav {
+
+			@include breakMin($breakTablet) {}
+		}
+
+		&_special {
+			margin-top: 40px;
+
+			@include breakMin($breakTablet) {
+				margin-top: 120px;
+			}
+		}
+	}
+}

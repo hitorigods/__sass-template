@@ -1,0 +1,322 @@
+@charset "utf-8";
+
+@use '../function'as *;
+@use '../utility'as *;
+
+//* heading
+//* -------------------------------------------------- */
+.c-heading {
+	position: relative;
+
+	@include breakMin($breakTablet) {}
+
+	&_head {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		position: relative;
+		padding-bottom: 40px;
+		z-index: 2;
+
+		@include breakMin($breakTablet) {
+			flex-direction: row-reverse;
+			align-items: flex-start;
+			justify-content: center;
+			padding-bottom: 0;
+		}
+
+		&:after {
+			content: '';
+			display: block;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			width: 30px;
+			height: 2px;
+			margin: auto;
+			background-color: $colorSub;
+
+			@include breakMin($breakTablet) {
+				display: none;
+			}
+		}
+
+		.c-heading--layout_row & {
+			@include breakMin($breakTablet) {
+				flex-direction: column;
+				align-items: center;
+			}
+		}
+
+		.c-heading--size_small & {
+			@include breakMin($breakTablet) {
+				max-height: 750px;
+			}
+		}
+
+		.c-heading--has_sub & {
+			@include breakMin($breakTablet) {
+				margin-left: 60px;
+			}
+		}
+
+		.c-heading--has_sub.c-heading--layout_row & {
+			@include breakMin($breakTablet) {
+				margin-left: 0;
+			}
+		}
+	}
+
+	&_body {
+		position: relative;
+		margin-top: 30px;
+		z-index: 2;
+
+		@include breakMin($breakTablet) {
+			margin-top: 60px;
+		}
+	}
+
+	&_catch {
+		display: block;
+		padding: 5px 10px;
+		background-color: $colorMain;
+		@include fontsize(14);
+		letter-spacing: .5em;
+		line-height: 1.5;
+
+		@include breakMin($breakTablet) {
+			padding: 20px 5px;
+			@include fontsize(22);
+			writing-mode: vertical-rl;
+			font-feature-settings: initial;
+		}
+
+		.c-heading--size_small & {
+			@include breakMin($breakTablet) {
+				@include fontsize(18);
+			}
+		}
+
+		.c-heading--layout_row & {
+			@include breakMin($breakTablet) {
+				padding: 5px 20px;
+				writing-mode: unset;
+				font-feature-settings: 'palt';
+			}
+		}
+	}
+
+	&_name {
+		display: block;
+		position: relative;
+		margin-top: 20px;
+		font-family: $fontMincho;
+		@include fontsize(40);
+		font-weight: 400;
+		letter-spacing: .1em;
+		line-height: 1.4;
+		text-align: center;
+
+		@include breakMin($breakTablet) {
+			margin-top: 0;
+			margin-right: 50px;
+			padding-top: 60px;
+			padding-bottom: 60px;
+			@include fontsize(70);
+			text-align: justify;
+			writing-mode: vertical-rl;
+			font-feature-settings: initial;
+		}
+
+		&:after {
+			content: '';
+			display: none;
+			position: absolute;
+			bottom: 0;
+			left: .25em;
+			right: .25em;
+			height: 3px;
+			background-color: $colorSub;
+
+			@include breakMin($breakTablet) {
+				display: block;
+			}
+		}
+
+		html[lang="en"] & {
+			@include breakMin($breakTablet) {
+				text-align: left;
+			}
+		}
+
+		.c-heading--size_small & {
+			@include fontsize(30);
+
+			@include breakMin($breakTablet) {
+				@include fontsize(50);
+			}
+		}
+
+		.c-heading--layout_row & {
+			@include breakMin($breakTablet) {
+				margin-right: 0;
+				padding-top: 50px;
+				padding-bottom: 0;
+				writing-mode: unset;
+				font-feature-settings: 'palt';
+			}
+
+			&:after {
+				left: 0;
+				right: 0;
+				width: 40px;
+				margin: auto;
+
+				@include breakMin($breakTablet) {}
+			}
+		}
+	}
+
+	&_sub {
+		display: block;
+		position: absolute;
+		top: -70px;
+		left: 50%;
+		margin-left: -200px;
+		padding-left: .25em;
+		font-family: $fontMincho;
+		@include fontsize(75);
+		font-weight: 400;
+		letter-spacing: .05em;
+		line-height: 1.3;
+		text-indent: -.25em;
+		white-space: nowrap;
+		opacity: .1;
+		// transform: translate(-50%, 0);
+		z-index: 1;
+
+		@include breakMin($breakTablet) {
+			top: -60px;
+			margin-left: 0;
+			@include fontsize(150);
+			line-height: 1.4;
+			transform: rotate(90deg);
+			transform: translate(25%, 0) rotate(90deg);
+			transform-origin: 0 0;
+		}
+
+		.c-heading--layout_row & {
+			@include breakMin($breakTablet) {
+				top: 15px;
+				transform: translate(-150%, -50%);
+			}
+		}
+	}
+
+	&_lead {
+		display: block;
+		@include fontsize(13);
+		letter-spacing: .05em;
+		line-height: 2;
+		text-align: center;
+
+		@include breakMin($breakTablet) {
+			@include fontsize(18);
+		}
+
+		&--align_left {
+			text-align: left;
+		}
+	}
+}
+
+//* heading2
+//* -------------------------------------------------- */
+.c-heading2 {
+	@include breakMin($breakTablet) {}
+
+	&_name {
+		display: inline-block;
+		padding: 5px 15px;
+		background-color: $colorSub;
+		font-family: $fontMincho;
+		@include fontsize(25);
+		font-weight: 400;
+		letter-spacing: .25em;
+		line-height: 1.3;
+
+		@include breakMin($breakTablet) {
+			padding: 5px 10px;
+			@include fontsize(40);
+		}
+	}
+}
+
+//* heading3
+//* -------------------------------------------------- */
+.c-heading3 {
+	position: relative;
+	padding-left: 15px;
+	border-left: 3px solid $colorMain;
+
+	@include breakMin($breakTablet) {
+		padding-left: 25px;
+	}
+
+	&_name {
+		display: block;
+		font-family: $fontMincho;
+		@include fontsize(18);
+		font-weight: 400;
+		letter-spacing: .25em;
+		line-height: 1.3;
+
+		@include breakMin($breakTablet) {
+			@include fontsize(30);
+		}
+	}
+}
+
+//* heading4
+//* -------------------------------------------------- */
+.c-heading4 {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	position: relative;
+	padding-bottom: 30px;
+
+	@include breakMin($breakTablet) {
+		padding-bottom: 50px;
+	}
+
+	&:after {
+		content: '';
+		display: block;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		width: 40px;
+		height: 4px;
+		margin: auto;
+		background-color: $colorSub;
+	}
+
+	&_name {
+		display: block;
+		font-family: $fontMincho;
+		@include fontsize(19);
+		font-weight: 500;
+		letter-spacing: .25em;
+		line-height: 1.5;
+		text-align: center;
+
+		@include breakMin($breakTablet) {
+			@include fontsize(32);
+			line-height: 1.3;
+		}
+	}
+}

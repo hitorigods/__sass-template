@@ -1,0 +1,140 @@
+@charset "utf-8";
+
+@use '../function'as *;
+@use '../utility'as *;
+
+//* button
+//* -------------------------------------------------- */
+.c-button {
+	@include breakMin($breakTablet) {}
+
+	a {
+		text-decoration: none;
+	}
+
+	a,
+	button {}
+
+	&_box {
+		display: inline-flex;
+		align-items: center;
+		position: relative;
+		max-width: 100%;
+		min-width: 265px;
+		min-height: 45px;
+		padding: 10px 50px 10px 15px;
+		border: solid 1px $colorFont;
+		@include transition;
+
+		@include breakMin($breakTablet) {
+			justify-content: center;
+			min-width: 285px;
+			min-height: 55px;
+		}
+
+		&:after {
+			content: '';
+			display: block;
+			position: absolute;
+			top: 50%;
+			right: -15px;
+			width: 50px;
+			height: 1px;
+			background-color: $colorFont;
+			@include transition;
+			z-index: 2;
+		}
+
+		&:hover,
+		a:hover &,
+		button:hover & {
+			background-color: $colorSub;
+			color: $colorFont;
+			border-color: $colorSub;
+
+			&:after {
+				right: -35px;
+			}
+		}
+	}
+
+	&_label {
+		display: block;
+		@include fontsize(13);
+		font-weight: 700;
+		line-height: 1.5;
+		letter-spacing: .15em;
+
+		@include breakMin($breakTablet) {
+			@include fontsize(16);
+		}
+	}
+}
+
+//* button2
+//* -------------------------------------------------- */
+.c-button2 {
+	@include breakMin($breakTablet) {}
+
+	a {
+		text-decoration: none;
+	}
+
+	a,
+	button {}
+
+	&_box {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		max-width: 100%;
+		min-width: (590px / 2);
+		min-height: (130px / 2);
+		background-color: $colorMain;
+		box-shadow: 15px 0px 30px rgba($colorBg, .3);
+		@include transition;
+
+
+		@include breakMin($breakTablet) {
+			min-width: 500px;
+			min-height: 100px;
+			box-shadow: 20px 0px 40px rgba($colorBg, .3);
+		}
+
+		&:hover {
+			color: $colorFont;
+			background-color: $colorSub;
+		}
+	}
+
+	&_label {
+		display: block;
+		@include fontsize(15);
+		font-weight: 700;
+		line-height: 1.5;
+		letter-spacing: .1em;
+
+		@include breakMin($breakTablet) {
+			@include fontsize(20);
+		}
+	}
+}
+
+//* buttons
+//* -------------------------------------------------- */
+.c-buttons {
+	@include breakMin($breakTablet) {}
+
+	&_items {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		margin: -15px;
+	}
+
+	&_item {
+		display: block;
+		padding: 15px;
+	}
+}

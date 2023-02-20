@@ -1,0 +1,83 @@
+@charset "utf-8";
+
+// デスクトップのコンテンツ幅
+$widthDesktop: 1280px;
+$widthDesktopWide: 1500px;
+$widthDesktopNarrow: 1000px;
+
+// タブレットのコンテンツ幅
+$widthTablet: 500px;
+
+// モバイル・タイプのコンテンツ幅
+$widthMobile: 290px;
+
+// タブレットのブレークポイント
+$breakTablet: 1023px;
+
+// スマートフォンのブレークポイント
+$breakMobile: 479px;
+
+// ベース文字サイズ
+$baseFontSize: 16;
+
+// ベース行間
+$baseLineHeight: 1.6;
+
+//カラー
+$colorFont: #fff;
+$colorMain: #876f10;
+$colorSub: #e31000;
+$colorBg: #050505;
+$colorLine: #444;
+
+$fontGothic: '游ゴシック Medium',
+'Yu Gothic Medium',
+'游ゴシック体',
+'YuGothicM',
+'YuGothicM',
+'游ゴシック',
+YuGothic,
+'Hiragino Kaku Gothic ProN',
+'Hiragino Kaku Gothic Pro',
+Meiryo,
+メイリオ,
+'ＭＳ ゴシック',
+sans-serif;
+
+$fontMincho: '游明朝',
+YuMincho,
+'Hiragino Mincho ProN',
+'Hiragino Mincho Pro',
+'HG明朝E',
+'ＭＳ 明朝',
+serif;
+
+$fontHannari: 'Hannari';
+
+$fontRoboto: 'Roboto';
+
+$fontArchivo: 'Archivo';
+
+$fontBasic: $fontRoboto,
+$fontGothic;
+
+// ブロック要素の左右の余白
+$padding: 20px;
+
+// ロールオーバーの値
+$opacity: 0.7;
+
+// 角丸
+$bordeRadius: 4px;
+
+// トランジションの速度
+$transitionSpeed: 0.35;
+
+// hover時の要素の拡大比率
+$scaleValue: 1.15;
+
+// CSS3ベンダープレフィックス
+$prefixes: -webkit-,
+-moz-,
+-ms-,
+'';

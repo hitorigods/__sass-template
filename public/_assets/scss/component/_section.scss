@@ -1,0 +1,88 @@
+@charset "utf-8";
+
+@use '../function'as *;
+@use '../utility'as *;
+
+//* section
+//* -------------------------------------------------- */
+.c-section {
+	position: relative;
+
+	@include breakMin($breakTablet) {}
+
+	&--has_slash {}
+
+	&--slash_overflow {
+		overflow: hidden;
+	}
+
+	&--bg_black {
+		background-color: $colorBg;
+	}
+
+	&_inner {
+		.c-section--has_slash & {
+			position: relative;
+			z-index: 3;
+		}
+	}
+
+	&_slash {
+		overflow: hidden;
+		display: block;
+		position: absolute;
+		left: 0;
+		right: 0;
+		background: url(../img/common/texture_01_red.png) repeat center center / 300px auto;
+		transform: skew(0, 10deg);
+		z-index: 1;
+
+		&--color_red-dark {
+			background-image: url(../img/common/texture_01_red-dark.png);
+		}
+
+		.c-section--slash_reverse & {
+			transform: skew(0, -10deg);
+
+			@include breakMin($breakTablet) {}
+		}
+
+		.c-section--slash_center & {
+			top: 30px;
+			bottom: 30px;
+
+			@include breakMin($breakTablet) {
+				top: 60px;
+				bottom: 60px;
+			}
+		}
+
+		.c-section--slash_center.c-section--has_anchor & {
+			top: (30px + 90px + 30px * 2);
+
+			@include breakMin($breakTablet) {
+				top: (60px + 90px + 30px * 2);
+			}
+		}
+
+		.c-section--slash_top & {
+			top: 150px;
+			height: 100vw;
+			transform: skew(0, 10deg) translate(0, -100%);
+
+			@include breakMin($breakTablet) {
+				top: 250px;
+			}
+		}
+
+		.c-section--slash_bottom & {
+			bottom: 225px;
+			height: 100vw;
+			transform: skew(0, 10deg) translate(0, 100%);
+
+			@include breakMin($breakTablet) {
+				bottom: 550px;
+			}
+		}
+	}
+}

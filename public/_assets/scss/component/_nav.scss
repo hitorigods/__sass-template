@@ -1,0 +1,147 @@
+@charset "utf-8";
+
+@use '../function'as *;
+@use '../utility'as *;
+
+//* nav
+//* -------------------------------------------------- */
+.c-nav {
+	@include breakMin($breakTablet) {}
+
+	&_inner {}
+
+	&_items {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		margin: -7.5px 0;
+
+		@include breakMin($breakTablet) {}
+	}
+
+	&_item {
+		display: block;
+		width: (100% / 2);
+		padding: 7.5px 0;
+
+		@include breakMin($breakTablet) {
+			width: 250px;
+		}
+
+		a {
+			text-decoration: none;
+		}
+	}
+
+	&_box {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
+		min-height: 30px;
+		padding: 5px 10px;
+		border-right: 1px solid $colorMain;
+
+		@include breakMin($breakTablet) {
+			min-height: 40px;
+		}
+
+		.c-nav_item:nth-child(odd) & {
+			border-left: 1px solid $colorMain;
+
+			@include breakMin($breakTablet) {
+				border-left: none;
+			}
+		}
+
+		.c-nav_item:first-child & {
+			@include breakMin($breakTablet) {
+				border-left: none;
+			}
+		}
+
+		.c-nav_item:last-child & {
+			@include breakMin($breakTablet) {
+				border-right: none;
+			}
+		}
+
+	}
+
+	&_name {
+		display: block;
+		@include fontsize(13);
+		letter-spacing: .05em;
+		line-height: 1.4;
+		text-align: center;
+
+		@include breakMin($breakTablet) {
+			@include fontsize(16);
+		}
+	}
+}
+
+
+//* nav2
+//* -------------------------------------------------- */
+.c-nav2 {
+	@include breakMin($breakTablet) {}
+
+	&_items {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: baseline;
+		margin: -5px;
+
+		@include breakMin($breakTablet) {
+			margin: -10px;
+		}
+	}
+
+	&_item {
+		display: block;
+		padding: 5px;
+
+		@include breakMin($breakTablet) {
+			padding: 10px;
+		}
+
+		a {
+			text-decoration: none;
+		}
+	}
+
+	&_box {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 100px;
+		min-height: 35px;
+		padding: 5px 10px;
+		color: $colorMain;
+		border: solid 1px $colorMain;
+
+		@include breakMin($breakTablet) {
+			min-width: 140px;
+			min-height: 40px;
+		}
+
+		&:hover,
+		.c-nav2_item--state_active & {
+			color: $colorFont;
+			background-color: $colorMain;
+		}
+	}
+
+	&_label {
+		display: block;
+		@include fontsize(13);
+		font-weight: 700;
+		letter-spacing: .1em;
+		line-height: 1.2;
+
+		@include breakMin($breakTablet) {
+			@include fontsize(16);
+		}
+	}
+}
